@@ -1,7 +1,7 @@
 Ce projet permet d'avoir un aperçu de la mise en œuvre de la librairie OpentTK en .net. Il est inspiré très fortement du site http://www.songho.ca/opengl et particulièrement du programme C++ : http://www.songho.ca/opengl/files/matrix.zip pour la partie dessin. 
 
 Il se compose d'une partie commune qui concerne le dessin de la scène. Une GameWindow et 2 Forms avec un controlGL permettent d'afficher le dessin.
-Le 1ère Forms émule les évenements UpdateFrame et RenderFrame absent du ControlGL à travers une minuterie ou au choix l'évenementd'application Idle.
+Le 1ère Forms émule les évenements UpdateFrame et RenderFrame absent du ControlGL à travers une minuterie ou l'évenementd'application Idle.
 Le 2ème Forms implémente une boucle de jeux.
 Les 3 rendus permettent d'avoir une animation manuelle, ou automatique.
 
