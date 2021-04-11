@@ -14,9 +14,13 @@ F   --> rendu des triangles en Plein, Fil, Point
 L   --> Epaisseur de 1 à 3
 A   --> Arrêt des évenements UpdateFrame et RenderFrame
 R   --> Animation du modèle (Rotation axe Y) soit en automatique soit en manuel
++   --> Augmentation des FPS d'animation
+-   --> Diminution des FPS d'animation  
 G   --> Démarage des évenements UpdateFrame et RenderFrame sur la GameWindow
+
 I   --> Démarage des évenements UpdateFrame et RenderFrame sur le Form1 avec l'émulation à partir de l'évenementd'application Idle
 T   --> Démarage des évenements UpdateFrame et RenderFrame sur le Form1 avec l'émulation à partir de d'une minuterie
+
 B   --> Démarage des évenements UpdateFrame et RenderFrame sur le Form2 avec une boucle pour les 2 évenements
 Ctrl+B  Démarage des évenements UpdateFrame et RenderFrame sur le Form2 avec une boucle pour chaque évenement
 
