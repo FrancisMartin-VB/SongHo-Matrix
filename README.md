@@ -31,12 +31,10 @@ T   --> Démarage des évenements UpdateFrame et RenderFrame sur le Form1 avec l
 
 B   --> Démarage des évenements UpdateFrame et RenderFrame sur le Form2 avec une boucle pour les 2 évenements
 
-
-![image](https://user-images.githubusercontent.com/81978881/114317360-045a4300-9b08-11eb-8be9-669bc93e583d.png)
-
 Ctrl+B  Démarage des évenements UpdateFrame et RenderFrame sur le Form2 avec une boucle pour chaque évenement
 
 
+![image](https://user-images.githubusercontent.com/81978881/114317360-045a4300-9b08-11eb-8be9-669bc93e583d.png)
 
 
 
