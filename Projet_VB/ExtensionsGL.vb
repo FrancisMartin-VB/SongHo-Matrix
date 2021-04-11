@@ -1,4 +1,7 @@
-﻿Friend Class ExtensionsGL
+﻿''' <summary>
+''' Creer une liste des fonctions supportées par le context actuel d'OpenGL
+''' </summary>
+Friend Class ExtensionsGL
     Private OpenGLExtensions As HashSet(Of String)
     Friend Sub New()
         Dim count = GL.GetInteger(GetPName.NumExtensions)
