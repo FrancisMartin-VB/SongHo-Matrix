@@ -7,8 +7,6 @@ Les 3 rendus permettent d'avoir une animation manuelle, ou automatique.
 
 Il incopore une dll qui permet d'afficher du texte à partir de n'importe quelle police accessible sous windows ainsi que le code VB correspondant. Le code support provient d'une archive de la version N°1.1.4 d'OpenTK.Compatibility classe TextPrinter et ces dépendances que l'on peut trouver ici : https://sourceforge.net/projects/opentk/
 
-![image](https://user-images.githubusercontent.com/81978881/114317360-045a4300-9b08-11eb-8be9-669bc93e583d.png)
-
 F11 --> Passage en fenêtre maximisée et vice versa
 F   --> rendu des triangles en Plein, Fil, Point
 L   --> Epaisseur de 1 à 3
