@@ -40,5 +40,7 @@ Ctrl+B  Démarage des évenements UpdateFrame et RenderFrame sur le Form2 avec u
 
 ![image](https://user-images.githubusercontent.com/81978881/114317360-045a4300-9b08-11eb-8be9-669bc93e583d.png)
 
+Pour ce 1er programme la partie dessin est simple et n'utilise que le mode OpenGL immédiat. Le principal est de voir l'implentation d'un rendu OpenGL et de comprendre les différents aspects de celle-ci. N'hésiter pas à faire varier les différents paramètres dans le code afin de voir la variation sur les ressources de votre système. Le gestionnaire des tâches est très utile pour cela.
+![image](https://user-images.githubusercontent.com/81978881/114319810-56549600-9b13-11eb-883e-14e1d74c96a7.png)
 
 
