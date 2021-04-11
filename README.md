@@ -21,7 +21,7 @@ Augmentation des FPS d'animation --> +
    
 Diminution des FPS d'animation --> -
    
-G   --> Démarage des évenements UpdateFrame et RenderFrame sur la GameWindow
+G   --> Prise en compte des évenements UpdateFrame et RenderFrame sur la GameWindow
 
 
 I   --> Démarage des évenements UpdateFrame et RenderFrame sur le Form1 avec l'émulation à partir de l'évenementd'application Idle
