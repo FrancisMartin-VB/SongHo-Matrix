@@ -46,8 +46,8 @@ Pour ce 1er programme la partie dessin est simple et n'utilise que le mode OpenG
 
 Projet VS 2017 Net Framework 4.8
 
-Dépendance Librairie OpenTK version 3.3.1. Les versions ultérieures sont pour Net.Core. Package NuGet à patir de la gestion des packages NuGet sous VS
+Dépendance Librairie OpenTK version 3.3.1. Les versions ultérieures sont pour Net.Core. Package NuGet à partir de la gestion des packages NuGet sous VS
 
-Dépendance Librairie OpenTK.GlControl version 3.1.0. Package NuGet à patir de la gestion des packages NuGet sous VS
+Dépendance Librairie OpenTK.GlControl version 3.1.0. Package NuGet à partir de la gestion des packages NuGet sous VS
 
 Dépendance Librairie OpenTK.Texte fournie avec le projet ou utilisation du code VB (traduction C# --> VB)
