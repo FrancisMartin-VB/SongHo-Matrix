@@ -87,6 +87,7 @@ Friend Class RenduControlGL_2
     ''' <summary> La gestion du clavier sous WindowsForms est différente de celle de la gameWindow 
     ''' Vous serez sans doute obligé de travailler sur les évenments PreviewKeyDown, KeyDown et KeyUP</summary>
     Private Sub RenduOpenGL_KeyDown(sender As Object, e As KeyEventArgs)
+        Debug.Print($"Touche Code : {e.KeyCode}, Value : {e.KeyValue}, Data : {e.KeyData}")
         Dim FlagPaint As Boolean = False ' mettre à true sur les actions qui modifie la scène
         Select Case e.KeyCode'on prévoit toujours de pouvoir fermer le rendu OPENGL avec Escape
             Case Keys.Escape
@@ -150,9 +151,9 @@ Friend Class RenduControlGL_2
                 Else
                     Me.WindowState = FormWindowState.Normal
                 End If
-            Case Keys.Add
+            Case Keys.P, Keys.Add
                 If EventAnimateModel.IsStarted Then EventAnimateModel.AugmenterFrequenceAnimation(1)
-            Case Keys.Subtract
+            Case Keys.M, Keys.Subtract
                 If EventAnimateModel.IsStarted Then EventAnimateModel.DiminuerFrequenceAnimation(1)
             Case Else
         End Select

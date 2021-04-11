@@ -113,9 +113,9 @@ Friend Class RenduControlGL
                 Else
                     Me.WindowState = FormWindowState.Normal
                 End If
-            Case Keys.Add
+            Case Keys.P, Keys.Add
                 AnimateModel.AugmenterFrequenceAnimation(1)
-            Case Keys.Subtract
+            Case Keys.M, Keys.Subtract
                 AnimateModel.DiminuerFrequenceAnimation(1)
             Case Else
         End Select

@@ -153,9 +153,9 @@
                 Else
                     RenduOpenGL.WindowState = WindowState.Normal
                 End If
-            Case Key.KeypadPlus
+            Case Key.P, Key.KeypadPlus
                 AnimateModel.AugmenterFrequenceAnimation(1)
-            Case Key.KeypadSubtract
+            Case Key.Semicolon, Key.KeypadSubtract
                 AnimateModel.DiminuerFrequenceAnimation(1)
             Case Else
         End Select
