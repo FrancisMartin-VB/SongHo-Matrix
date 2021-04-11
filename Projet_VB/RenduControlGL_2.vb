@@ -293,11 +293,11 @@ Friend Class RenduControlGL_2
         'Dimensions initiales du formulaire
         ClientSize = New Size(WidthInit, HeightInit)
         'initialisation des FPS désirés si on lance la boucle d'écoute
-        FpsEventUpdateFrame = 60
+        FpsEventUpdateFrame = 120
         EventUpdateFrame = New FPS(FpsEventUpdateFrame, FpsEventUpdateFrame, FpsEventUpdateFrame)
         FpsEventRenderFrame = 60
         EventRenderFrame = New FPS(FpsEventRenderFrame, FpsEventRenderFrame, FpsEventRenderFrame)
-        EventAnimateModel = New FPS(30, FpsEventUpdateFrame, 30)
+        EventAnimateModel = New FPS(FpsEventRenderFrame, FpsEventUpdateFrame, FpsEventRenderFrame \ 2)
         'création du rendu OpenGL
         RenduOpenGL = New GLControl(New GraphicsMode(), 3, 1, GraphicsContextFlags.Default) With {
             .Dock = DockStyle.Fill,'Ici un seul control sur toute la surface client du formulaire

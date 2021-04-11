@@ -213,6 +213,9 @@ Friend Class RenduControlGL
         End If
 
         If AnimateRender.IsDelaiFps(Duree) Then
+            'attention cet appel sera le plus long car il s'agit du dessin de la scène. c'est lui qui va limiter les FPS Update et Animate
+            'Attention la propriété RenduGL.Vsync à true limite de fait à la plus haute fréquence de rafraichissement des écrans de votre système 
+            'généralement 60 mais maintenant 120 et 144
             RenduOpenGL.Invalidate()
         Else
             If UpdateFrame = TypeUpdateFrame.IDLE Then

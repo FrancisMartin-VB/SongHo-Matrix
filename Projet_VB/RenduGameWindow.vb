@@ -38,7 +38,7 @@
         AjouterEvenementRenduOpenGL()
 
         'initialisation des diverses variables prises en compte pour le dessin de la sc
-        AnimateModel = New FPS(Render, Update, Render)
+        AnimateModel = New FPS(Render, Update, Render \ 2)
         EventFrame = [Enum].GetName(GetType(TypeUpdateFrame), UpdateFrame)
         LastUpdateFrame = Date.Now
         LastFPSFrame = 0
