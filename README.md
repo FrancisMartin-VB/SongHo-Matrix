@@ -17,9 +17,9 @@ A   --> Arrêt des évenements UpdateFrame et RenderFrame
 
 R   --> Animation du modèle (Rotation axe Y) soit en automatique soit en manuel
 
-+   --> Augmentation des FPS d'animation
+/+   --> Augmentation des FPS d'animation
    
--   --> Diminution des FPS d'animation 
+/-   --> Diminution des FPS d'animation 
    
 G   --> Démarage des évenements UpdateFrame et RenderFrame sur la GameWindow
 
