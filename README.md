@@ -11,9 +11,9 @@ F11 --> Passage en fenêtre maximisée et vice versa
 
 F   --> rendu des triangles en Plein, Fil, Point
 
-L   --> Epaisseur de 1 à 3
+L   --> Epaisseur Fil et Point de 1 à 3
 
-A   --> Arrêt des évenements UpdateFrame et RenderFrame
+A   --> Arrêt des évenements UpdateFrame et RenderFrame et de l'animation du modèle automatique
 
 R   --> Animation du modèle (Rotation axe Y) soit en automatique soit en manuel
 
