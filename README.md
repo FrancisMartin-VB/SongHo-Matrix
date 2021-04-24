@@ -8,7 +8,7 @@ Les 3 rendus permettent d'avoir une animation du modèle manuelle ou automatique
 
 ## Affichage de Texte
 La dll OpenTK.Texte permet l'affichage de texte à partir de n'importe quelle police accessible sous windows. Le code VB correspondant est fourni. 
-Le code C# support provient d'une archive de la version N°1.1.4 d'OpenTK.Compatibility `class TextPrinter` et ces dépendances que l'on peut trouver ici : https://sourceforge.net/projects/opentk/
+Le code initial C# provient d'une archive de la version N°1.1.4 d'OpenTK.Compatibility `class TextPrinter` et ces *dépendances* que l'on peut trouver ici : https://sourceforge.net/projects/opentk/
 L'article suivant https://www.codeproject.com/Articles/1057539/Abstract-of-the-text-rendering-with-OpenGL-OpenTK permet d'approfondir ce sujet particulier.
 
 ## Actions possibles
@@ -24,19 +24,38 @@ L'article suivant https://www.codeproject.com/Articles/1057539/Abstract-of-the-t
    - Bouton Droit de la souris appuyé --> éloignement ou rapprochement du point de visée (zoom)
 - Touche fenêtre GameWindows   
    - Prise en compte des évenements UpdateFrame et RenderFrame sur la GameWindow --> G
-- Touche fenêtre GLcontrol N°1
+- Touches fenêtre GLcontrol N°1
    - Démarage des évenements UpdateFrame et RenderFrame sur le Form1 avec l'émulation à partir de l'évenementd'application Idle --> I
-  - Démarage des évenements UpdateFrame et RenderFrame sur le Form1 avec l'émulation à partir de d'une minuterie --> T
-- Touche fenêtre GLcontrol N°2
+   - Démarage des évenements UpdateFrame et RenderFrame sur le Form1 avec l'émulation à partir de d'une minuterie --> T
+- Touches fenêtre GLcontrol N°2
    - Démarage des évenements UpdateFrame et RenderFrame sur le Form2 avec une boucle pour les 2 évenements --> B
    - Démarage des évenements UpdateFrame et RenderFrame sur le Form2 avec une boucle pour chaque évenement --> Ctrl+B
 
 ![image](https://user-images.githubusercontent.com/81978881/114317360-045a4300-9b08-11eb-8be9-669bc93e583d.png)
 
 ## Particularité du code
-Pour ce 1er programme la partie dessin est simple et n'utilise que le mode OpenGL immédiat. Le principal est de voir l'implentation d'un rendu OpenGL et de comprendre les différents aspects de celle-ci. N'hésiter pas à lire les commentaires et à faire varier les différents paramètres dans le code afin de voir la variation sur les ressources de votre système. Le gestionnaire des tâches est très utile pour cela.
+Pour ce 1er programme la partie dessin est simple et n'utilise que le mode OpenGL immédiat. Le principal est de voir l'implentation d'un rendu OpenGL et de comprendre les différents aspects de celle-ci. N'hésiter pas à lire les commentaires et à faire varier les différents paramètres dans le code afin de voir l'impact sur les ressources de votre système. Le gestionnaire des tâches est très utile pour cela.
 
 ![image](https://user-images.githubusercontent.com/81978881/114319810-56549600-9b13-11eb-883e-14e1d74c96a7.png)
+
+- Implémentation de l'application et des formulaires WindowsForms. 
+   - Application démarre à partir d'une procédure Main qui lance le formulaire principal. Voir la configuration de l'Application dans la fenêtre des propriétés de la solution. Cela permet d'établir une correspondnance avec une application C# et ainsi de comparer les 2 languages voir le faire une traduction VB --> C# assez facilement.
+   - Les formulaires WindowsForms n'utilise pas le modificateur de variable `WithEvents` spécifique à VB mais ajoute explicitement les évenements du formulaire et des controles et le constructeur `New`. Cela n'empêche pas l'utilisation du concepteur de formulaire. D'une manière générale il n'est plus fait appel aux procédures, fonctions spécifiques à VB au travers l'arborescence `Microsoft.VisualBasic`. Les espaces de noms correspondants ne sont pas importés. Voir la configuration des Références dans la fenêtre des propriétés de la solution. 
+''' VB
+'dans le designer
+'Suppression par rapport au désigner VB. Déclaration d'une variable avec le déclarateur WithEvents
+'Friend WithEvents Button1 As Button
+'Ajout par rapport au designer VB. déclaration normale d'une variable au lieu du declarateur WithEvents
+Friend Button1 As Button
+    
+'dans le principal
+ AddHandler Me.Button1.Click, New EventHandler(AddressOf Button1_Click)
+ Private Sub Button1_Click(sender As Object, e As EventArgs) 'Handles Button1.Click
+'''
+- Emulation Evenement UpdateFrame et Render Frame avec le GLControl
+   - Timer
+   - évenement Idle
+   - Boucle de jeux
 
 ## Type de projet
 - Projet VS 2017 Net Framework 4.8
