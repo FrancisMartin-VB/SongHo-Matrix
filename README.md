@@ -13,15 +13,15 @@ L'article suivant https://www.codeproject.com/Articles/1057539/Abstract-of-the-t
 
 ## Actions possibles
 1. Touches communes aux 3 fenêtres
- - Passage en fenêtre maximisée et vice versa --> F11 
- - Rendu des triangles en Plein, Fil, Point -->  F
- - Epaisseur Fil et Point de 1 à 3 --> L
- - Arrêt des évenements UpdateFrame et RenderFrame et de l'animation automatique du modèle --> A
- - Bascule Animation du modèle (Rotation axe Y) en automatique ou animation en manuel --> R
- - Augmentation des FPS d'animation --> P ou Pavé numérique + 
- - Diminution des FPS d'animation --> M ou Pavé numérique -
- - Bouton Gauche de la souris appuyé --> déplacement de la caméra sur les 3 axes
- - Bouton Droit de la souris appuyé --> éloignement ou rapprochement du point de visée (zoom)
+   - Passage en fenêtre maximisée et vice versa --> F11 
+   - Rendu des triangles en Plein, Fil, Point -->  F
+   - Epaisseur Fil et Point de 1 à 3 --> L
+   - Arrêt des évenements UpdateFrame et RenderFrame et de l'animation automatique du modèle --> A
+   - Bascule Animation du modèle (Rotation axe Y) en automatique ou animation en manuel --> R
+   - Augmentation des FPS d'animation --> P ou Pavé numérique + 
+   - Diminution des FPS d'animation --> M ou Pavé numérique -
+   - Bouton Gauche de la souris appuyé --> déplacement de la caméra sur les 3 axes
+   - Bouton Droit de la souris appuyé --> éloignement ou rapprochement du point de visée (zoom)
 2. Touche fenêtre GameWindows   
  - Prise en compte des évenements UpdateFrame et RenderFrame sur la GameWindow --> G
 3. Touche fenêtre GLcontrol N°1
