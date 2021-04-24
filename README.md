@@ -13,9 +13,9 @@ L'article suivant https://www.codeproject.com/Articles/1057539/Abstract-of-the-t
 
 ## Actions possibles
 - Touches communes aux 3 fenêtres
-. Passage en fenêtre maximisée et vice versa --> F11 
-. Rendu des triangles en Plein, Fil, Point -->  F
-. Epaisseur Fil et Point de 1 à 3 --> L
+1. Passage en fenêtre maximisée et vice versa --> F11 
+2. Rendu des triangles en Plein, Fil, Point -->  F
+3. Epaisseur Fil et Point de 1 à 3 --> L
 -- Arrêt des évenements UpdateFrame et RenderFrame et de l'animation automatique du modèle --> A
 -- Bascule Animation du modèle (Rotation axe Y) en automatique ou animation en manuel --> R
 -- Augmentation des FPS d'animation --> P ou Pavé numérique + 
