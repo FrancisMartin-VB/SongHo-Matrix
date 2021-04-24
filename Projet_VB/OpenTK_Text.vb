@@ -4,6 +4,10 @@ Imports System.Reflection
 Imports System.Drawing.Text
 
 Namespace Texte
+    Friend Module ContextGraphics
+        Property CurrentContext As IGraphicsContext
+    End Module
+
     Friend Class ObjectPool(Of T As {IPoolableType(Of T), New})
         Private pool As Queue(Of T) = New Queue(Of T)()
 
@@ -579,8 +583,8 @@ Namespace Texte
             Get
 
                 If idField = 0 Then
-                    Call GraphicsContext.Assert()
-                    contextField = GraphicsContext.CurrentContext
+                    'Call GraphicsContext.Assert()
+                    contextField = CurrentContext
                     idField = CreateTexture(Width, Height)
                 End If
 
@@ -1231,7 +1235,6 @@ Namespace Texte
                     Dim current As Integer = 0
 
                     For Each glyph As GlyphEQuatable In block
-
                         ' Do not render whitespace characters or characters outside the clip rectangle.
                         If glyph.IsWhiteSpace OrElse extents(current).Width = 0 OrElse extents(current).Height = 0 Then
                             current += 1
@@ -1334,7 +1337,7 @@ Namespace Texte
 
         Friend Sub Begin() Implements ITextOutputProvider.Begin
             If disposed Then Throw New ObjectDisposedException([GetType]().ToString())
-            Call GraphicsContext.Assert()
+            'Call GraphicsContext.Assert()
 
             ' Save the state of everything we are going to modify:
             ' the current matrix mode, viewport state and the projection, modelview and texture matrices.
@@ -1366,7 +1369,7 @@ Namespace Texte
 
         Friend Sub [End]() Implements ITextOutputProvider.End
             If disposed Then Throw New ObjectDisposedException([GetType]().ToString())
-            Call GraphicsContext.Assert()
+            'Call GraphicsContext.Assert()
             Dim current_matrix As Integer
             GL.GetInteger(GetPName.MatrixMode, current_matrix)
             viewportField = viewport_stack.Pop()
@@ -2173,7 +2176,7 @@ Namespace Texte
                 End If
             End If
 
-
+            GoTo Suite
             ' Mono's GDI+ implementation suffers from an issue where the specified layoutRect is not taken into
             ' account. We will try to improve the situation by moving text to the correct location on this
             ' error condition. This will not help word wrapping, but it is better than nothing.
@@ -2188,7 +2191,7 @@ Namespace Texte
                     measured_glyphs(i) = rect
                 Next
             End If
-
+Suite:
             Return measured_glyphs
         End Function
 #Region "FindEdges"

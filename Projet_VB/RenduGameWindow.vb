@@ -71,7 +71,7 @@
     ''' <summary> initialisation des états d'OPENGL. 
     ''' C'est là notament que l'on retrouve les activations des fonctions blend, depth, texture, alpha, etc...</summary> 
     Private Sub RenduGL_Load(ByVal sender As Object, ByVal e As EventArgs)
-        InitialiserRenduGL()
+        InitialiserRenduGL(RenduOpenGL.Context)
     End Sub
     ''' <summary> On desinstalle les ressources impliquées sur la carte vidéo </summary>
     Private Sub RenduGL_Unload(ByVal sender As Object, ByVal e As EventArgs)
@@ -217,6 +217,5 @@
         End If
         LastUpdateRender = Temp
         DessinerScene()
-        RenduOpenGL.SwapBuffers()
     End Sub
 End Class

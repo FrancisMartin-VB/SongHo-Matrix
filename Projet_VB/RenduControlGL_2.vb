@@ -66,7 +66,7 @@ Friend Class RenduControlGL_2
     ''' <summary> L'initialisation d'openGL est faite uniquement à ce moment. On ne peut donc pas appeler de function OpenTK.GL
     '''  avant l'ajout du controle sur le formulaire même si le control est créé </summary>
     Private Sub RenduOpenGL_Load(sender As Object, e As EventArgs)
-        InitialiserRenduGL()
+        InitialiserRenduGL(RenduOpenGL.Context)
     End Sub
     ''' <summary> Il faut le déclencher pour des mises à jour autres que la mise à jour du Rendu OpenGL </summary>
     Private Sub RenduOpenGL_Paint(sender As Object, e As PaintEventArgs)
@@ -284,7 +284,6 @@ Friend Class RenduControlGL_2
         'calcul le texte à afficher concernant les FPS
         TextFPS = $"U:{EventUpdateFrame.FpsReel} FPS, A:{EventAnimateModel.FpsReel} FPS, R:{EventRenderFrame.FpsReel} FPS"
         DessinerScene()
-        RenduOpenGL.SwapBuffers()
     End Sub
 #End Region
 #Region "Evenements formulaire"

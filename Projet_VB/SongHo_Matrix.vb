@@ -1,14 +1,15 @@
 ﻿'Pour afficher du texte sur le viewport
 Imports SongHoMatrix_OpenTK.Texte 'prise en compte du code à la place de la dll
-'Imports OpenTK.Texte 'ou prise en compte de la dll à la place du code
+'Imports OpenTK.Texte 'ou prise en compte de la dll à la place du code et un peu plus rapide
 Module SongHo_Matrix
 #Region "Privée"
     'Variables
     Private Const fmt As String = " 0.000;-0.000"
-    Private MatriceModel, MatriceView, MatriceModelView, MatriceProjection, MatriceProjectionText As Matrix4
+    Private MatriceModel, MatriceView, MatriceModelView, MatriceProjection As Matrix4
     Private W, H As Integer
     Private PoliceMatrice, PoliceAnimation As Font, Texte As TexteGL
     Private GLExtensions As ExtensionsGL
+    Private ContexteCreation As IGraphicsContext
     'procédures
     ''' <summary> dessine le model sur la scène avec la couleur spécifiée </summary>
     Private Sub DessinerModel(r As Single, g As Single, b As Single, a As Single)
@@ -114,17 +115,8 @@ Module SongHo_Matrix
     End Sub
     ''' <summary> Ecrit les matrice View et model ainsi que le Update Frame et compteur de FPS </summary>
     Private Sub EcrireMatrices()
-        ' sauvegarde de la matrice ModelVievw actuelle
-        GL.PushMatrix()
-        ' on l'initialise à rien
-        GL.LoadIdentity()
-
-        ' sauvegarde de la matrice Projection actuelle 
-        GL.MatrixMode(MatrixMode.Projection)
-        GL.PushMatrix()
-        ' on charge la matrice de projection de l'affichage du text
-        GL.LoadMatrix(MatriceProjectionText)
-
+        ' sauvegarde de la matrice ModelVievw actuelle, de la matrice Projection actuelle et charge la matrice de projection de l'affichage du text
+        Texte.Begin()
         'pour éviter des artefacts quand les polygones sont dessinnés en lines ou points
         GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill)
         ' pour ne pas avoir d'altération de la couleur du texte
@@ -163,12 +155,9 @@ Module SongHo_Matrix
 
         GL.Enable(EnableCap.Lighting)
         GL.PolygonMode(MaterialFace.FrontAndBack, Rendu)
-        ' restore projection matrix
-        GL.PopMatrix() ' restore to previous projection matrix
 
-        ' restore modelview matrix
-        GL.MatrixMode(MatrixMode.Modelview) ' switch to modelview matrix
-        GL.PopMatrix() ' restore to previous modelview matrix
+        'restore la matrice de projection et la matrice de modelview
+        Texte.End()
     End Sub
     ''' <summary> autorise les différents états d'OpenGL dont on a besoin </summary>
     Private Sub InitialiserEnablesGL()
@@ -238,7 +227,7 @@ Module SongHo_Matrix
     Friend VersionOpenGL As String
     'procédures
     ''' <summary> initialise une source lumineuse dont on a besoin </summary>
-    Friend Sub InitialiserRenduGL()
+    Friend Sub InitialiserRenduGL(CreationContexte As IGraphicsContext)
         'Partie concernant l'initalisation des variables partagées avec le Rendu d'OpenGL
         RotationModelY = 45.0F
         TailleLinePointPolygone = 1.0F
@@ -252,6 +241,7 @@ Module SongHo_Matrix
         PoliceMatrice = New Font("Consolas", 10, FontStyle.Regular)
         PoliceAnimation = New Font("Comic Sans MS", 18, FontStyle.Regular)
         Texte = New TexteGL(TextQuality.High)
+
         Rendu = PolygonMode.Fill
         'Partie concernant la configuration d'OpenGL
         InitialiserEnablesGL()
@@ -260,6 +250,7 @@ Module SongHo_Matrix
         InitialiserLightsGL()
         GLExtensions = New ExtensionsGL()
         VersionOpenGL = GL.GetString(StringName.Version) & ", Rendu : " & GL.GetString(StringName.Renderer)
+        ContexteCreation = CreationContexte
     End Sub
     ''' <summary> détermine la surface d'affichage en fonction des dimensions de la fenêtre et met la martice de projection en relation</summary>
     Friend Sub SetViewPort(Taille As Size)
@@ -267,8 +258,6 @@ Module SongHo_Matrix
         H = Taille.Height
         'on dessine sur l'ensemble de la surface de la fenêtre
         GL.Viewport(0, 0, W, H)
-        'determination de la matrice de projection pour l'écriture de texte sur le viewport
-        MatriceProjectionText = Matrix4.CreateOrthographicOffCenter(0F, W, H, 0, -1.0F, 1.0F)
         'détermination et affectation de la matrice de projection pour le dessin sur le viewport
         MatriceProjection = Matrix4.CreatePerspectiveFieldOfView(FovY * DegToRad, CSng(W / H), 1.0F, 100.0F)
         GL.MatrixMode(MatrixMode.Projection)
@@ -299,6 +288,7 @@ Module SongHo_Matrix
         DessinerModel(1.0F, 1.0F, 1.0F, 1.0F)
         'ecrit les différentes informations 
         EcrireMatrices()
-        'on affiche le tout à l'écran qu'on laisse à charge du rendu OpenGL
+        'on affiche le tout à l'écran 
+        ContexteCreation.SwapBuffers()
     End Sub
 End Module

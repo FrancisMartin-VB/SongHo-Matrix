@@ -34,17 +34,16 @@ Friend Class RenduControlGL
     ''' <summary> L'initialisation d'openGL est faite uniquement à ce moment. On ne peut donc pas appeler de function OpenTK.GL
     '''  avant l'ajout du controle sur le formulaire même si le control est créé </summary>
     Private Sub RenduOpenGL_Load(sender As Object, e As EventArgs)
-        InitialiserRenduGL()
+        InitialiserRenduGL(RenduOpenGL.Context)
     End Sub
     ''' <summary> remplace l'évènement RenderFrame de la GameWindow. Il faut le déclencher soit dans la boucle UpdateFrame
     ''' soit à chaque évenement du rendu Opengl qui modifie le dessin </summary>
     Private Sub RenduOpenGL_Paint(sender As Object, e As PaintEventArgs)
         DessinerScene()
-        RenduOpenGL.SwapBuffers()
     End Sub
     ''' <summary> sert pour indiquer à OpenGL que le viewPort a changé ce qui modifie les matrices de projection </summary>
     Private Sub RenduOpenGL_Resize(sender As Object, e As EventArgs)
-        SetViewPort(Me.ClientSize)
+        SetViewPort(ClientSize)
     End Sub
     ''' <summary> La gestion du clavier sous WindowsForms est différente de celle de la gameWindow 
     ''' Vous serez sans doute obligé de travailler sur les évenments PreviewKeyDown, KeyDown et keyUP</summary>
