@@ -40,20 +40,40 @@ Pour ce 1er programme la partie dessin est simple et n'utilise que le mode OpenG
 
 - Implémentation de l'application et des formulaires WindowsForms. 
    - Application démarre à partir d'une procédure Main qui lance le formulaire principal. Voir la configuration de l'Application dans la fenêtre des propriétés de la solution. Cela permet d'établir une correspondnance avec une application C# et ainsi de comparer les 2 languages voir le faire une traduction VB --> C# assez facilement.
-   - Les formulaires WindowsForms n'utilise pas le declarateur de variable `WithEvents` spécifique à VB mais ajoute explicitement les évenements du formulaire et des controles et le constructeur `New`. Cela n'empêche pas l'utilisation du concepteur de formulaire. D'une manière générale il n'est plus fait appel aux procédures, fonctions spécifiques à VB au travers l'arborescence `Microsoft.VisualBasic`. Les espaces de noms correspondants ne sont pas importés. Voir la configuration des Références dans la fenêtre des propriétés de la solution. 
+   - Les formulaires WindowsForms n'utilise pas le declarateur de variable `WithEvents` spécifique à VB mais ajoute explicitement les évenements du formulaire et des controles et le constructeur `New`. Cela n'empêche pas l'utilisation du concepteur de formulaire. D'une manière générale il n'est plus fait appel aux procédures, fonctions spécifiques à VB au travers l'arborescence `Microsoft.VisualBasic`. Les espaces de noms correspondants ne sont pas importés. Voir la configuration des Références dans la fenêtre des propriétés de la solution. Tout est disponible dans le framework.
 ```vb.net
-'Suppression par rapport au désigner VB. Déclaration d'une variable avec le déclarateur WithEvents
-'Friend WithEvents Button1 As Button
-'Ajout par rapport au designer VB. déclaration normale d'une variable au lieu du declarateur WithEvents
+'Dans le désigner
+   'Suppression par rapport au désigner VB de la déclaration d'une variable avec le déclarateur WithEvents
+   'Friend WithEvents Button1 As Button
+   'Ajout par rapport au designer VB de la déclaration normale d'une variable au lieu du declarateur WithEvents
    Friend Button1 As Button
     
-'dans le principal
+'Dans le principal
+   'procédure invisible en Winforms classique mais ajouter par le compilateur
+   Friend Sub New()
+      InitializeComponent()
+      AjouterEvenements()
+   End Sub
+   
+   'procédure à appeler dans le la Sub New() du formulaire. Invisible en Winforms classique mais ajouter par le compilateur
    Private Sub AjouterEvenements()
       AddHandler Me.Button1.Click, New EventHandler(AddressOf Button1_Click)
    End Sub
    
+   'Suppression de la clause Handles
    Private Sub Button1_Click(sender As Object, e As EventArgs) 'Handles Button1.Click
    End Sub
+```
+Le control n'est pas disponible dans le concepteur de formulaire. Vous pouvez le remplacer par un control Panel afin d'obtenir les propriétés de mise en page que vous pourrez alors récupérer pour configurer le GLControl lors de son ajout par le code sur le formulaire.
+```vb
+   'création du control hors désigner
+   RenduOpenGL = New GLControl(New GraphicsMode(), 3, 1, GraphicsContextFlags.Default) With 
+   {
+      .Dock = DockStyle.Fill,             'propriété de mise en page. Ici un seul control sur toute la surface client du formulaire
+      .VSync = True                       'autre config concernant la qualité de l'affichage
+   }
+   'ajout du controle sur le formulaire
+   Controls.Add(RenduOpenGL)
 ```
 - Emulation Evenement UpdateFrame et Render Frame avec le GLControl
    - Timer
