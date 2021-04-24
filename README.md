@@ -41,7 +41,7 @@ Pour ce 1er programme la partie dessin est simple et n'utilise que le mode OpenG
 - Implémentation de l'application et des formulaires WindowsForms. 
    - Application démarre à partir d'une procédure Main qui lance le formulaire principal. Voir la configuration de l'Application dans la fenêtre des propriétés de la solution. Cela permet d'établir une correspondnance avec une application C# et ainsi de comparer les 2 languages voir le faire une traduction VB --> C# assez facilement.
    - Les formulaires WindowsForms n'utilise pas le modificateur de variable `WithEvents` spécifique à VB mais ajoute explicitement les évenements du formulaire et des controles et le constructeur `New`. Cela n'empêche pas l'utilisation du concepteur de formulaire. D'une manière générale il n'est plus fait appel aux procédures, fonctions spécifiques à VB au travers l'arborescence `Microsoft.VisualBasic`. Les espaces de noms correspondants ne sont pas importés. Voir la configuration des Références dans la fenêtre des propriétés de la solution. 
-'''c#
+```VB
 'dans le designer
 'Suppression par rapport au désigner VB. Déclaration d'une variable avec le déclarateur WithEvents
 'Friend WithEvents Button1 As Button
@@ -51,7 +51,7 @@ Friend Button1 As Button
 'dans le principal
  AddHandler Me.Button1.Click, New EventHandler(AddressOf Button1_Click)
  Private Sub Button1_Click(sender As Object, e As EventArgs) 'Handles Button1.Click
-'''
+```
 - Emulation Evenement UpdateFrame et Render Frame avec le GLControl
    - Timer
    - évenement Idle
