@@ -12,7 +12,7 @@ Le code C# support provient d'une archive de la version N°1.1.4 d'OpenTK.Compat
 L'article suivant https://www.codeproject.com/Articles/1057539/Abstract-of-the-text-rendering-with-OpenGL-OpenTK permet d'approfondir ce sujet particulier.
 
 ## Actions possibles
-1. Touches communes aux 3 fenêtres
+- Touches communes aux 3 fenêtres
    - Passage en fenêtre maximisée et vice versa --> F11 
    - Rendu des triangles en Plein, Fil, Point -->  F
    - Epaisseur Fil et Point de 1 à 3 --> L
@@ -22,14 +22,14 @@ L'article suivant https://www.codeproject.com/Articles/1057539/Abstract-of-the-t
    - Diminution des FPS d'animation --> M ou Pavé numérique -
    - Bouton Gauche de la souris appuyé --> déplacement de la caméra sur les 3 axes
    - Bouton Droit de la souris appuyé --> éloignement ou rapprochement du point de visée (zoom)
-2. Touche fenêtre GameWindows   
- - Prise en compte des évenements UpdateFrame et RenderFrame sur la GameWindow --> G
-3. Touche fenêtre GLcontrol N°1
- - Démarage des évenements UpdateFrame et RenderFrame sur le Form1 avec l'émulation à partir de l'évenementd'application Idle --> I
-- Démarage des évenements UpdateFrame et RenderFrame sur le Form1 avec l'émulation à partir de d'une minuterie --> T
-4. Touche fenêtre GLcontrol N°2
- - Démarage des évenements UpdateFrame et RenderFrame sur le Form2 avec une boucle pour les 2 évenements --> B
- - Démarage des évenements UpdateFrame et RenderFrame sur le Form2 avec une boucle pour chaque évenement --> Ctrl+B
+- Touche fenêtre GameWindows   
+   - Prise en compte des évenements UpdateFrame et RenderFrame sur la GameWindow --> G
+- Touche fenêtre GLcontrol N°1
+   - Démarage des évenements UpdateFrame et RenderFrame sur le Form1 avec l'émulation à partir de l'évenementd'application Idle --> I
+  - Démarage des évenements UpdateFrame et RenderFrame sur le Form1 avec l'émulation à partir de d'une minuterie --> T
+- Touche fenêtre GLcontrol N°2
+   - Démarage des évenements UpdateFrame et RenderFrame sur le Form2 avec une boucle pour les 2 évenements --> B
+   - Démarage des évenements UpdateFrame et RenderFrame sur le Form2 avec une boucle pour chaque évenement --> Ctrl+B
 
 ![image](https://user-images.githubusercontent.com/81978881/114317360-045a4300-9b08-11eb-8be9-669bc93e583d.png)
 
