@@ -23,13 +23,13 @@ L'article suivant https://www.codeproject.com/Articles/1057539/Abstract-of-the-t
    - Bouton Gauche de la souris appuyé --> déplacement de la caméra sur les 3 axes
    - Bouton Droit de la souris appuyé --> éloignement ou rapprochement du point de visée (zoom)
 - Touche fenêtre GameWindows   
-   - Prise en compte des évenements UpdateFrame et RenderFrame sur la GameWindow --> G
-- Touches fenêtre GLcontrol N°1
-   - Démarage des évenements UpdateFrame et RenderFrame sur le Form1 avec l'émulation à partir de l'évenementd'application Idle --> I
-   - Démarage des évenements UpdateFrame et RenderFrame sur le Form1 avec l'émulation à partir de d'une minuterie --> T
-- Touches fenêtre GLcontrol N°2
-   - Démarage des évenements UpdateFrame et RenderFrame sur le Form2 avec une boucle pour les 2 évenements --> B
-   - Démarage des évenements UpdateFrame et RenderFrame sur le Form2 avec une boucle pour chaque évenement --> Ctrl+B
+   - Prise en compte des évenements UpdateFrame et RenderFrame pour l'animation --> G
+- Touches fenêtre GLControl N°1
+   - Démarage des évenements UpdateFrame et RenderFrame avec l'émulation à partir de l'évenementd'application Idle --> I
+   - Démarage des évenements UpdateFrame et RenderFrame avec l'émulation à partir de d'une minuterie --> T
+- Touches fenêtre GLControl N°2
+   - Démarage des évenements UpdateFrame et RenderFrame avec une boucle pour les 2 évenements --> B
+   - Démarage des évenements UpdateFrame et RenderFrame avec une boucle pour chaque évenement --> Ctrl+B
 
 ![image](https://user-images.githubusercontent.com/81978881/114317360-045a4300-9b08-11eb-8be9-669bc93e583d.png)
 
@@ -39,8 +39,8 @@ Pour ce 1er programme la partie dessin est simple et n'utilise que le mode OpenG
 ![image](https://user-images.githubusercontent.com/81978881/114319810-56549600-9b13-11eb-883e-14e1d74c96a7.png)
 
 - Implémentation de l'application et des formulaires WindowsForms. 
-   - Application démarre à partir d'une procédure Main qui lance le formulaire principal. Voir la configuration de l'Application dans la fenêtre des propriétés de la solution. Cela permet d'établir une correspondnance avec une application C# et ainsi de comparer les 2 languages voir le faire une traduction VB --> C# assez facilement.
-   - Les formulaires WindowsForms n'utilise pas le declarateur de variable `WithEvents` spécifique à VB mais ajoute explicitement les évenements du formulaire et des controles et le constructeur `New`. Cela n'empêche pas l'utilisation du concepteur de formulaire. D'une manière générale il n'est plus fait appel aux procédures, fonctions spécifiques à VB au travers l'arborescence `Microsoft.VisualBasic`. Les espaces de noms correspondants ne sont pas importés. Voir la configuration des Références dans la fenêtre des propriétés de la solution. Tout est disponible dans le framework.
+   - Application démarre à partir d'une procédure Main qui lance le formulaire principal. Voir la configuration de l'Application dans la fenêtre des propriétés de la solution. Cela permet d'établir une correspondnance avec une application C# et ainsi de comparer les 2 languages, voir de faire une traduction VB --> C# assez facilement.
+   - Les formulaires WindowsForms n'utilise pas le declarateur de variable `WithEvents` spécifique à VB mais ajoute explicitement les évenements du formulaire, de ces controles et le constructeur `New`. Cela n'empêche pas l'utilisation du concepteur de formulaire. D'une manière générale il n'est plus fait appel aux procédures, fonctions spécifiques à VB au travers l'arborescence de `Microsoft.VisualBasic`. Les espaces de noms correspondants ne sont pas importés. Voir la configuration des Références dans la fenêtre des propriétés de la solution. Tout est disponible dans le framework.
 ```vb.net
 'Dans le désigner
    'Suppression par rapport au désigner VB de la déclaration d'une variable avec le déclarateur WithEvents
@@ -64,8 +64,9 @@ Pour ce 1er programme la partie dessin est simple et n'utilise que le mode OpenG
    Private Sub Button1_Click(sender As Object, e As EventArgs) 'Handles Button1.Click
    End Sub
 ```
-Le control n'est pas disponible dans le concepteur de formulaire. Vous pouvez le remplacer par un control Panel afin d'obtenir les propriétés de mise en page que vous pourrez alors récupérer pour configurer le GLControl lors de son ajout par le code sur le formulaire.
+Le control n'est pas disponible dans le concepteur de formulaire. Vous pouvez le remplacer par un control Panel afin d'obtenir les propriétés de mise en page que vous pourrez récupérer lors de la configuration du GLControl dans le code.
 ```vb
+   'Ajout dans le New ou le Load du formulaire
    'création du control hors désigner
    RenduOpenGL = New GLControl(New GraphicsMode(), 3, 1, GraphicsContextFlags.Default) With 
    {
@@ -76,9 +77,10 @@ Le control n'est pas disponible dans le concepteur de formulaire. Vous pouvez le
    Controls.Add(RenduOpenGL)
 ```
 - Emulation Evenement UpdateFrame et Render Frame avec le GLControl
-   - Timer
-   - évenement Idle
-   - Boucle de jeux
+   - Timer. C'est une implémentation très facile à partir d'un timer Winforms. La vitesse obtenue à vide pour l'évenement Update est cependant assez basse mais largement suffisante pour toute application qui ne soit pas un jeu d'action.
+   - évenement Idle. Cet évenement est émis par l'application juste avant avant qu'elle ne se repose autrement dit très souvent. Pour que cette implémentation fonctionne il faut que la boucle d'écoute du formulaire soit alimentée en permanence. Voir le code pour cela. La vitesse est tout à fait correcte. La fenêtre doit garder le focus en permance. 
+   - Boucle de jeux. C'est la plus compliquée à implémenter et elle consomme beaucoup de ressources mais c'est celle qui offre les plus hautes performances. Si votre besoin de performance est à ce niveau, il vaudra mieux sans doute aller sur une GameWindows.
+   - Les matrices de transformation. Un module annexe permet de transformer un point d'un modèle en pixel affiché sur l'écran. Cet exercice permet à la fois de suivre le cheminement du pipeline OpenGL et l'apprentissage des matrices de transformation. Une procédure concerne les matrices OpenTK. Une autre concerne les matrices OpenGL. Vous pouvez suivre le cheminement dans une session de débogage en pas à pas.
 
 ## Type de projet
 - Projet VS 2017 Net Framework 4.8
