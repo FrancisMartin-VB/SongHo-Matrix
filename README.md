@@ -1,5 +1,5 @@
 # Songho-Matrix
-Ce projet est inspiré très fortement du site http://www.songho.ca/opengl et particulièrement du programme C++ : http://www.songho.ca/opengl/files/matrix.zip pour la partie dessin. 
+Ce projet est inspiré très fortement du site [Songho Matrix](http://www.songho.ca/opengl "C'est le titre") et particulièrement du programme C++ : http://www.songho.ca/opengl/files/matrix.zip pour la partie dessin. 
 Il permet d'avoir un aperçu de la mise en œuvre de la librairie OpentTK pour le Framework 4.8
 Il se compose d'une partie commune qui concerne le dessin de la scène. Une GameWindow et 2 Forms avec un GLControl permettent d'afficher le dessin.
 Le 1ère Forms émule les évenements UpdateFrame et RenderFrame absent du ControlGL à travers une minuterie ou l'évenement d'application Idle.
@@ -46,38 +46,38 @@ Pour ce 1er programme la partie dessin est simple et n'utilise que le mode OpenG
    - Les formulaires WindowsForms n'utilise pas le declarateur de variable `WithEvents` spécifique à VB mais ajoute explicitement les évenements du formulaire, de ces controles et le constructeur `New`. Cela n'empêche pas l'utilisation du concepteur de formulaire. D'une manière générale il n'est plus fait appel aux procédures, fonctions spécifiques à VB au travers l'arborescence de `Microsoft.VisualBasic`. Les espaces de noms correspondants ne sont pas importés. Voir la configuration des Références dans la fenêtre des propriétés de la solution. Tout est disponible dans le framework.
 ```VB
 'Dans le désigner
-   'Suppression par rapport au désigner VB de la déclaration d'une variable avec le déclarateur WithEvents
-   'Friend WithEvents Button1 As Button
-   'Ajout par rapport au designer VB de la déclaration normale d'une variable au lieu du declarateur WithEvents
-   Friend Button1 As Button
+'Suppression par rapport au désigner VB de la déclaration d'une variable avec le déclarateur WithEvents
+'Friend WithEvents Button1 As Button
+'Ajout par rapport au designer VB de la déclaration normale d'une variable au lieu du declarateur WithEvents
+Friend Button1 As Button
     
 'Dans le principal
-   'procédure invisible en Winforms classique mais ajouter par le compilateur
-   Friend Sub New()
-      InitializeComponent()
-      AjouterEvenements()
-   End Sub
-   
-   'procédure à appeler dans le la Sub New() du formulaire. Invisible en Winforms classique mais ajouter par le compilateur
-   Private Sub AjouterEvenements()
-      AddHandler Me.Button1.Click, New EventHandler(AddressOf Button1_Click)
-   End Sub
-   
-   'Suppression de la clause Handles
-   Private Sub Button1_Click(sender As Object, e As EventArgs) 'Handles Button1.Click
-   End Sub
+'procédure invisible en Winforms classique mais ajouter par le compilateur
+Friend Sub New()
+   InitializeComponent()
+   AjouterEvenements()
+End Sub
+
+'procédure à appeler dans le la Sub New() du formulaire. Invisible en Winforms classique mais ajouter par le compilateur
+Private Sub AjouterEvenements()
+   AddHandler Me.Button1.Click, New EventHandler(AddressOf Button1_Click)
+End Sub
+
+'Suppression de la clause Handles
+Private Sub Button1_Click(sender As Object, e As EventArgs) 'Handles Button1.Click
+End Sub
 ```
 Le control n'est pas disponible dans le concepteur de formulaire. Vous pouvez le remplacer par un control Panel afin d'obtenir les propriétés de mise en page que vous pourrez récupérer lors de la configuration du GLControl dans le code.
 ````VB
-   'Ajout dans le New ou le Load du formulaire
-   'création du control hors désigner
-   RenduOpenGL = New GLControl(New GraphicsMode(), 3, 1, GraphicsContextFlags.Default) With 
-   {
-      .Dock = DockStyle.Fill,             'propriété de mise en page. Ici un seul control sur toute la surface client du formulaire
-      .VSync = True                       'autre config concernant la qualité de l'affichage
-   }
-   'ajout du controle sur le formulaire
-   Controls.Add(RenduOpenGL)
+'Ajout dans le New ou le Load du formulaire
+'création du control hors désigner
+RenduOpenGL = New GLControl(New GraphicsMode(), 3, 1, GraphicsContextFlags.Default) With 
+{
+   .Dock = DockStyle.Fill,             'propriété de mise en page. Ici un seul control sur toute la surface client du formulaire
+   .VSync = True                       'autre config concernant la qualité de l'affichage
+}
+'ajout du controle sur le formulaire
+Controls.Add(RenduOpenGL)
 ````
 
 ```C#
