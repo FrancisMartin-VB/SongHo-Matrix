@@ -8,8 +8,11 @@ Les 3 rendus permettent d'avoir une animation du modèle manuelle ou automatique
 
 ## Affichage de Texte
 La dll OpenTK.Texte permet l'affichage de texte à partir de n'importe quelle police accessible sous windows. Le code VB correspondant est fourni. 
-Le code initial C# provient d'une archive de la version N°1.1.4 d'OpenTK.Compatibility `class TextPrinter` et ces *dépendances* que l'on peut trouver ici : https://sourceforge.net/projects/opentk/
-L'article suivant https://www.codeproject.com/Articles/1057539/Abstract-of-the-text-rendering-with-OpenGL-OpenTK permet d'approfondir ce sujet particulier.
+Le code initial C# provient d'une archive de la version N°1.1.4 d'OpenTK.Compatibility `class TextPrinter` https://github.dev/FrancisMartin-VB/SongHo-Matrix/blob/master/README.md et ces *~~dépendances~~* que l'on peut trouver ici : https://sourceforge.net/projects/opentk/
+L'article suivant https://www.codeproject.com/Articles/1057539/Abstract-of-the-text-rendering-with-OpenGL-OpenTK permet d'approfondir ce sujet particulier.  
+[ ] Ceci est une case à cocher   
+[x]  
+[ ]
 
 ## Actions possibles
 - Touches communes aux 3 fenêtres
@@ -41,7 +44,7 @@ Pour ce 1er programme la partie dessin est simple et n'utilise que le mode OpenG
 - Implémentation de l'application et des formulaires WindowsForms. 
    - Application démarre à partir d'une procédure Main qui lance le formulaire principal. Voir la configuration de l'Application dans la fenêtre des propriétés de la solution. Cela permet d'établir une correspondnance avec une application C# et ainsi de comparer les 2 languages, voir de faire une traduction VB --> C# assez facilement.
    - Les formulaires WindowsForms n'utilise pas le declarateur de variable `WithEvents` spécifique à VB mais ajoute explicitement les évenements du formulaire, de ces controles et le constructeur `New`. Cela n'empêche pas l'utilisation du concepteur de formulaire. D'une manière générale il n'est plus fait appel aux procédures, fonctions spécifiques à VB au travers l'arborescence de `Microsoft.VisualBasic`. Les espaces de noms correspondants ne sont pas importés. Voir la configuration des Références dans la fenêtre des propriétés de la solution. Tout est disponible dans le framework.
-```vb.net
+```VB
 'Dans le désigner
    'Suppression par rapport au désigner VB de la déclaration d'une variable avec le déclarateur WithEvents
    'Friend WithEvents Button1 As Button
@@ -65,7 +68,7 @@ Pour ce 1er programme la partie dessin est simple et n'utilise que le mode OpenG
    End Sub
 ```
 Le control n'est pas disponible dans le concepteur de formulaire. Vous pouvez le remplacer par un control Panel afin d'obtenir les propriétés de mise en page que vous pourrez récupérer lors de la configuration du GLControl dans le code.
-```vb
+````VB
    'Ajout dans le New ou le Load du formulaire
    'création du control hors désigner
    RenduOpenGL = New GLControl(New GraphicsMode(), 3, 1, GraphicsContextFlags.Default) With 
@@ -75,7 +78,28 @@ Le control n'est pas disponible dans le concepteur de formulaire. Vous pouvez le
    }
    'ajout du controle sur le formulaire
    Controls.Add(RenduOpenGL)
-```
+````
+
+```C#
+/// <summary> couleur de base de l'affichage avant le dessin des tuiles </summary>
+internal Color CouleurFond { get; set; }
+/// <summary> surface des fonds de plan exprimée en tuiles dela couche des fonds de plan </summary>
+internal Rectangle SurfaceFond
+{
+   get
+   {
+         return new Rectangle(Pt0.IndexTuile, Taille);
+   }
+}
+/// <summary> surface des pentes exprimée en tuiles de la couche des pentes </summary>
+internal Rectangle SurfacePentes
+{
+   get
+   {
+         return new Rectangle(Pt0Pentes.IndexTuile, TaillePentes);
+   }
+}
+````
 - Emulation Evenement UpdateFrame et Render Frame avec le GLControl
    - Timer. C'est une implémentation très facile à partir d'un timer Winforms. La vitesse obtenue à vide pour l'évenement Update est cependant assez basse mais largement suffisante pour toute application qui ne soit pas un jeu d'action.
    - évenement Idle. Cet évenement est émis par l'application juste avant avant qu'elle ne se repose autrement dit très souvent. Pour que cette implémentation fonctionne il faut que la boucle d'écoute du formulaire soit alimentée en permanence. Voir le code pour cela. La vitesse est tout à fait correcte. La fenêtre doit garder le focus en permance. 
